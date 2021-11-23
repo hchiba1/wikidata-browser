@@ -1,0 +1,27 @@
+#!/usr/bin/env spang2
+# @endpoint wikidata
+# @option --time
+# @input ( wd:Q171977 )
+
+SELECT ?s (str(?label) AS ?label_str) (str(?gender_label) AS ?gender_label_str) (str(?country_label) AS ?country_label_str) (year(?birth) AS ?birth_year) (year(?death) AS ?death_year)
+WHERE {
+  ?s rdfs:label ?label .
+  FILTER (lang(?label) = 'en')
+  OPTIONAL {
+    ?s wdt:P21 ?gender .
+    ?gender rdfs:label ?gender_label .
+    FILTER (lang(?gender_label) = 'en')
+  }
+  OPTIONAL {
+    ?s wdt:P27 ?country .
+    ?country rdfs:label ?country_label .
+    FILTER (lang(?country_label) = 'en')
+  }
+  OPTIONAL {
+    ?s wdt:P569 ?birth .
+  }
+  OPTIONAL {
+    ?s wdt:P570 ?death .
+  }
+  VALUES (?s) { {{INPUT}} }
+}

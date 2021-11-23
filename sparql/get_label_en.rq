@@ -1,0 +1,11 @@
+#!/usr/bin/env spang2
+# @endpoint wikidata
+# @option --time
+# @input ( wd:Q171977 )
+
+SELECT ?s (str(?label) AS ?str)
+WHERE {
+  ?s rdfs:label ?label .
+  FILTER (lang(?label) = 'en')
+  VALUES (?s) { {{INPUT}} }
+}
