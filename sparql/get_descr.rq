@@ -2,7 +2,7 @@
 # @endpoint wikidata
 # @option --time
 
-SELECT DISTINCT ?s (str(?label) AS ?l) (str(?gl) AS ?g) (str(?cl) AS ?c) ?b (year(?death) AS ?d) ?des
+SELECT DISTINCT ?s (str(?label) AS ?l) (str(?gl) AS ?g) (year(?birth) AS ?b) (year(?death) AS ?d) (str(?cl) AS ?c) (str(?des) AS ?de)
 WHERE {
   ?s rdfs:label ?label .
   FILTER (lang(?label) = 'en')
@@ -26,6 +26,5 @@ WHERE {
     ?s schema:description ?des .
     FILTER (lang(?des) = 'en')
   }
-  BIND(year(?birth) AS ?b)
   VALUES (?s) { {{INPUT}} }
 }
