@@ -1,0 +1,7 @@
+#!/usr/bin/env spang2
+# @endpoint spang
+
+SELECT DISTINCT ?relative
+WHERE {
+  wd:Q509565 rdfs:seeAlso+ ?relative .
+}
